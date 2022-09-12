@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.15.0"
+      version = ">= 3.20.0"
     }
 
     kubernetes = {
@@ -11,6 +11,15 @@ terraform {
     }
   }
 }
+data "terraform_remote_state" "eks" {
+  backend = "s3"
+  config = {
+    bucket = "pollitng"
+    key    = "clustereks/terraform.tfstate"
+    region = "us-east-2"
+  }
+}
+
 resource "aws_ecr_repository" "registry" {
   name = "pollit_registry"
 }
