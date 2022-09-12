@@ -1,0 +1,26 @@
+{
+  "name": "pollitreporting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "start:dev": "nodemon --legacy-watch ./src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.10.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "method-override": "^3.0.0",
+    "mongodb": "^3.6.9",
+    "mongoose": "^5.13.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
+}

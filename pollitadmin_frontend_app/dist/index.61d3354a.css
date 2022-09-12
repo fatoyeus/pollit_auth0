@@ -1,0 +1,203 @@
+body {
+  background-color: #fff;
+}
+
+.poll-excerpt {
+  border: 0;
+  border-radius: 7px;
+  flex-direction: column;
+  align-items: center;
+  padding: .25rem;
+  display: flex;
+}
+
+.poll-excerpt > h5 {
+  color: #a17c03;
+}
+
+.table-excerpt {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.table-excerpt > div {
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  display: flex;
+}
+
+.table-excerpt div > h5 {
+  color: #a17c03;
+}
+
+.dashboard-block {
+  width: 100%;
+  justify-content: center;
+  margin-top: 2rem;
+  display: flex;
+}
+
+.table-block {
+  width: 80%;
+}
+
+.dashboard-block > article {
+  flex: 1;
+}
+
+.poll-list {
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  font-family: Oswald, sans-serif;
+  font-weight: 500;
+  display: flex;
+}
+
+.poll-list > div > h4 {
+  color: #1e823c;
+}
+
+.dash-numbers > a {
+  color: #111211;
+  outline: none;
+  text-decoration: none;
+}
+
+.dash-numbers > a > h2 {
+  font-size: 5rem;
+}
+
+.stripped-anchor {
+  color: #111211;
+  outline: none;
+  text-decoration: none;
+}
+
+.form-body {
+  width: 100%;
+  opacity: 0;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  font-family: Oswald, sans-serif;
+  font-weight: 500;
+  display: flex;
+}
+
+.transformed-form-body {
+  width: 100%;
+  opacity: 1;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  font-family: Oswald, sans-serif;
+  font-weight: 500;
+  transition-property: opacity;
+  transition-duration: 2s;
+  transition-delay: .1s;
+  display: flex;
+}
+
+.form-body > h1 > p {
+  font-size: 4rem;
+  font-weight: 200;
+}
+
+.form-section {
+  width: 35%;
+  justify-content: center;
+  margin-top: 2rem;
+  display: flex;
+}
+
+.poll-table {
+  flex-direction: column;
+  align-items: center;
+  font-family: Oswald, sans-serif;
+  display: flex;
+}
+
+.parsedobjects {
+  z-index: 1030;
+  width: 30%;
+  flex-direction: column;
+  align-items: flex-start;
+  display: flex;
+  position: relative;
+  top: 5px;
+  left: 0;
+}
+
+.parsedobjects-items {
+  all: revert;
+  text-align-last: center;
+  color: #fcfcfc;
+  width: 50%;
+  background-color: #baf5ba;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 2px;
+  font-size: 1rem;
+  box-shadow: 3px 3px 3px #bfd6bf;
+}
+
+.parsedobjects span:hover {
+  background-color: #95ed95;
+}
+
+input.form-control {
+  caret-color: #399e39;
+  color: #399e39;
+  font-weight: 600;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  width: 3%;
+}
+
+.leadtitle {
+  text-transform: capitalize;
+  margin-top: 2rem;
+  display: block;
+}
+
+.leadtitle-table {
+  text-transform: capitalize;
+  color: #a10611;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.leadtitle > a, .leadtitle-table > a {
+  color: #a10611;
+  outline: none;
+  text-decoration: none;
+}
+
+.poll-button {
+  background-color: #5bb577;
+  border: 0;
+}
+
+.spinner {
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 3rem;
+  display: flex;
+}
+
+a[class="dropdown-item"] > div > div > button {
+  font-size: .7rem;
+}
+
+div[class="blockMessageLogin"] > div > div > button {
+  color: #0f9c08;
+}
+
+/*# sourceMappingURL=index.61d3354a.css.map */

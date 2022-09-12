@@ -1,0 +1,26 @@
+# Configuration file for Bitbucket deployment Pipelines that enables continuous delivery for this project.
+
+
+image: hashicorp/terraform:1.2.5
+
+pipelines:
+    default:
+      - step:
+          name: deploy cluster
+          deployment: Staging
+          services:
+            - docker
+          script:
+            -  chmod +x ./cluster_eks/deploy.sh
+            - ./cluster_eks/deploy.sh
+          artifacts:
+            - cluster_eks/**
+      - step:
+          name: Build and deploy servers
+          deployment: Production
+          services:
+            - docker
+          script:
+            - export VERSION=$BITBUCKET_BUILD_NUMBER
+            -  chmod +x ./deployment_eks/deploy.sh
+            - ./deployment_eks/deploy.sh
