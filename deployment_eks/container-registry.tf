@@ -5,10 +5,7 @@ terraform {
       version = ">= 3.20.0"
     }
 
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = ">= 2.0.1"
-    }
+   
   }
 }
 data "terraform_remote_state" "eks" {
