@@ -1,88 +1,73 @@
 var   express  		    =  		require('express'),
       app 	 		    =  		express(),
-	  mongoose			=  		require('mongoose'),
-	  request			=  		require('request'),
 	  cors				= 		require('cors'),
       bodyParser 		=  		require('body-parser'),
 	  methodOverride	= 		require('method-override'),
-	  partyRoute		=		require('./routes/party'),
-	  pollRoute			=		require('./routes/polls'),
-	  userRoute			=		require('./routes/users'),
-	  candidateRoute	=		require('./routes/candidates'),
-	  officeRoute		=		require('./routes/offices'),
-	  Report			=		require('./models/report'),
-	  fileshare 		=		require('./routes/fileshare'),
-	  connectRabbit     = 		require('./lib/connectrabbit'),
-	  connectDb 		= 		require('./lib/connectdb');
-	 /* jwt 				= 		require('express-jwt'),
-	  jwks 				=	 	require('jwks-rsa');
+	  newBlogRoute		=		require('./routes/newblogs'),
+	  newPartyRoute		=		require('./routes/newparty'),
+	  newPollRoute		=		require('./routes/newpolls'),
+	  newUserRoute		=		require('./routes/newusers'),
+	  newCandidateRoute	=		require('./routes/newcandidates'),
+	  newLandingRoute	=		require('./routes/newlanding'),
+	  newOfficeRoute	=		require('./routes/newoffices'),
+	  newResultRoute	=		require('./routes/newresults'),
+	  connectRabbit     = 		require('./lib/connectrabbit');
+const helmet 			= 		require('helmet')
+const jwt 				= 		require('express-jwt')
+const jwks 				= 		require('jwks-rsa')
+const jwksUri    		= 		process.env.JWKSURI
+const audience 			= 		process.env.AUDIENCE
+const issuer			= 		process.env.ISSUER
+const corsorigin		= 		process.env.CORSORIGIN
+const port 				= 		process.env.PORT || 80
 const jwtCheck 			= 		jwt({
-											secret: jwks.expressJwtSecret({
-											cache: true,
-											rateLimit: true,
-											jwksRequestsPerMinute: 5,
-											jwksUri: 'https://dev-xu6xg5to.us.auth0.com/.well-known/jwks.json'
-									}),
-											audience: 'https://pollitng/api',
-											issuer: 'https://dev-xu6xg5to.us.auth0.com/',
-											algorithms: ['RS256']
-										});*/
-const dbhost			= 		process.env.DBHOST;
-const dbname			=		process.env.DBNAME;
-const RABBIT 			=	 	process.env.RABBIT;
-const url 				= 		`${dbhost}/${dbname}`;
-const port 				= 		process.env.PORT
-
-const crOptions  		=		{
-									origin : 'http://localhost:1236',
-									optionsSuccessStatus : 200
-								}
-app.use(cors(crOptions));
-
-
-app.locals.title	    =		"pollit";
-app.locals.csessions	=		[];
+										secret: jwks.expressJwtSecret({
+																			cache: true,
+																			rateLimit: true,
+																			jwksRequestsPerMinute: 5,
+																			jwksUri
+																		}),
+										audience,
+										issuer,
+										algorithms: ['RS256']
+									});
+var corOptions = {
+	origin: corsorigin,
+	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+	allowedHeaders: "Content-Type, Authorization",
+	optionsSuccessStatus: 200
+}
+//middlewares
+app.use(cors());
+app.use(helmet());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
-app.set('view engine', 'jsx');
-
-
-//Connect to the application database
-
-mongoose.connect(url , {useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{
-	console.log("DB Connected");
-}).catch(err=>{
-	console.log("Error:", err.message);
-});
-
-//middlewares
+app.use(newLandingRoute);
+app.use(jwtCheck);
 
 //Routes
-//app.use(jwtCheck);
-app.use(candidateRoute);
-app.use(officeRoute);
-app.use(partyRoute);
-app.use(pollRoute);
-app.use(userRoute);
-
+app.use(newBlogRoute);
+app.use(newCandidateRoute);
+app.use(newOfficeRoute);
+app.use(newPartyRoute);
+app.use(newPollRoute);
+app.use(newResultRoute);
+app.use(newUserRoute);
 
 function main(){
-	return connectDb()
-		.then((db) => {
-						return connectRabbit()
+		return connectRabbit()
 							.then(messageChannel =>{
 													app.listen(port, ()=>{
-														console.log("Microservice online.")
+														console.log(`Pollit_Backend Microservice online on ${port}.`)
 														})
 													app.locals.messageChannel = messageChannel
 						}) 
-					}) 
 				}
 
 					
 main()
-    .then(() => console.log("Pollit_Backend Microservice online."))
+    .then(() => console.log(`Pollit_Backend Microservice online on ${port}.`))
     .catch(err => {
-        console.error("Pollit_Backend Microservice failed to start.");
+        console.error(`Pollit_Backend Microservice failed to start on ${port}.`);
         console.error(err && err.stack || err);
-    });  
+    });   

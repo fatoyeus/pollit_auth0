@@ -1,0 +1,64 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress 
+metadata:
+  name: pollitng-application
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/actions.redirect-front:  '{"type":"redirect","redirectConfig":{"host":"www.pollitng.com","path":"/","port":"443","protocol":"HTTPS","statusCode":"HTTP_302"}}'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:266223464694:certificate/4a2acd5f-d6ef-419f-a1c4-c6eb2552926a 
+spec:
+  rules:
+   -  host: www.pollitng.com
+      http:
+        paths:
+        - pathType: Prefix
+          path: "/" 
+          backend:
+            service: 
+              name: pollit-frontend
+              port:
+                number: 80
+   -  host: pollitng.com
+      http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: redirect-front
+              port:
+                name: use-annotation 
+   -  host: api.pollitng.com
+      http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: pollit-backend
+              port:
+                number: 80
+   -  host: admin.pollitng.com
+      http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: pollit-admin-frontend
+              port:
+                number: 80
+   -  host: adminapi.pollitng.com
+      http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: pollit-admin-backend
+              port:
+                number: 80

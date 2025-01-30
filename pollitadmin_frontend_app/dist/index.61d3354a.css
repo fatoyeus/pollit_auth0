@@ -2,6 +2,55 @@ body {
   background-color: #fff;
 }
 
+.blog-header {
+  color: #a10611;
+  float: left;
+  padding-top: 4px;
+  padding-left: 3px;
+  padding-right: 8px;
+  font-family: Georgia;
+  font-size: 55px;
+  line-height: 60px;
+}
+
+.blog-paragraph {
+  z-index: 1;
+  width: 100%;
+  display: inline-flex;
+}
+
+.blog-view {
+  width: 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  font-family: Roboto Condensed, sans-serif;
+  font-weight: 400;
+  display: flex;
+}
+
+blockquote {
+  margin: 0;
+}
+
+blockquote p {
+  background: #eee;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+blockquote p:before {
+  content: "“";
+}
+
+blockquote p:after {
+  content: "”";
+}
+
+.addcanddiv {
+  z-index: 1;
+}
+
 .poll-excerpt {
   border: 0;
   border-radius: 7px;
@@ -60,6 +109,10 @@ body {
 
 .poll-list > div > h4 {
   color: #1e823c;
+}
+
+.profile-list {
+  color: #0f9c08;
 }
 
 .dash-numbers > a {
@@ -123,7 +176,7 @@ body {
 }
 
 .parsedobjects {
-  z-index: 1030;
+  z-index: 6;
   width: 30%;
   flex-direction: column;
   align-items: flex-start;
@@ -146,8 +199,17 @@ body {
   box-shadow: 3px 3px 3px #bfd6bf;
 }
 
+div[id="pollview-partylist"] > div > span {
+  width: 100%;
+}
+
 .parsedobjects span:hover {
   background-color: #95ed95;
+}
+
+.parsedobjects span:focus {
+  background-color: #95ed95;
+  outline: #95ed95;
 }
 
 input.form-control {
@@ -198,6 +260,22 @@ a[class="dropdown-item"] > div > div > button {
 
 div[class="blockMessageLogin"] > div > div > button {
   color: #0f9c08;
+}
+
+#lead-paragraph:first-letter {
+  color: #227db1;
+  float: left;
+  text-transform: capitalize;
+  padding-top: 4px;
+  padding-left: 3px;
+  padding-right: 8px;
+  font-family: Georgia;
+  font-size: 75px;
+  line-height: 60px;
+}
+
+#blog-item:first-letter {
+  text-transform: capitalize;
 }
 
 /*# sourceMappingURL=index.61d3354a.css.map */
