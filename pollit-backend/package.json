@@ -1,5 +1,5 @@
 {
-  "name": "pollit",
+  "name": "pollit-backend",
   "version": "1.0.0",
   "description": "backend",
   "main": "index.js",
@@ -10,20 +10,18 @@
   "author": "Olakunle Fajorin",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.32.0",
     "amqplib": "^0.10.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "express-jwt": "^7.7.5",
-    "fs": "0.0.1-security",
+    "express-jwt": "^5.3.1",
+    "express-oauth2-jwt-bearer": "^1.1.0",
+    "helmet": "^6.0.0",
     "jwks-rsa": "^2.1.4",
     "method-override": "^3.0.0",
-    "mongodb": "^3.6.9",
-    "mongoose": "^5.13.2",
     "multer": "^1.4.3",
-    "request": "^2.88.0",
-    "uuid": "^8.3.2",
-    "xmlbuilder2": "^2.4.0"
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"

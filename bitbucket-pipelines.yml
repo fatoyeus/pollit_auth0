@@ -16,11 +16,33 @@ pipelines:
           artifacts:
             - cluster_eks/**
       - step:
+          name: Build and deploy mongodb replicaset
+          deployment: Production
+          services:
+            - docker
+          script:
+            - chmod +x ./mongodb_replica_set/Terraform/deploy.sh
+            - ./mongodb_replica_set/Terraform/deploy.sh
+          artifacts:
+            - monogodb_replica_set/**
+      - step:
           name: Build and deploy servers
           deployment: Production
           services:
             - docker
           script:
             - export VERSION=$BITBUCKET_BUILD_NUMBER
-            -  chmod +x ./deployment_eks/deploy.sh
+            - chmod +x ./deployment_eks/deploy.sh
             - ./deployment_eks/deploy.sh
+          artifacts:
+            - deployment_eks/**
+      - step:
+          name: deploy aws alb controller
+          deployment: Production
+          services:
+            - docker
+          script:
+            - chmod +x ./terraform-aws-eks-lb-controller/deploy.sh
+            - ./terraform-aws-eks-lb-controller/deploy.sh
+          artifacts:
+            - terraform-aws-eks-lb-controller/**  

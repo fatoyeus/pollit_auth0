@@ -2,6 +2,7 @@ FROM node:12.18.1-alpine
 
 WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm install --only=production
-npx wait-port rabbit:5672 &&
+RUN npm install --only=production 
+COPY ./server.js ./server.js
+COPY ./dist ./dist
 CMD npm start
